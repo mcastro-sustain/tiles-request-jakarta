@@ -21,7 +21,6 @@
 package org.apache.tiles.request.servlet;
 
 import static org.easymock.EasyMock.*;
-import static org.easymock.classextension.EasyMock.*;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -29,7 +28,7 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Locale;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import org.apache.tiles.request.ApplicationResource;
 import org.apache.tiles.request.collection.ReadOnlyEnumerationMap;

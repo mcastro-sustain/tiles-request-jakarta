@@ -20,12 +20,12 @@
  */
 package org.apache.tiles.request.servlet.extractor;
 
-import static org.easymock.classextension.EasyMock.*;
+import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
 import java.util.Enumeration;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import org.junit.Before;
 import org.junit.Test;

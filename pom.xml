@@ -21,17 +21,11 @@ under the License.
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <artifactId>tiles-master</artifactId>
-        <groupId>org.apache.tiles</groupId>
-        <version>7</version>
-        <relativePath />
-    </parent>
-    <groupId>org.apache.tiles</groupId>
+    <groupId>com.journaltech</groupId>
     <artifactId>tiles-request</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1.0-jakarta-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Tiles Request Framework</name>
+    <name>Tiles Request Framework Jakarta</name>
     <description>Request abstraction for various request and template technologies</description>
     <url>http://tiles.apache.org/tiles-request/</url>
     <scm>
@@ -48,16 +42,19 @@ under the License.
     <modules>
         <module>tiles-request-api</module>
         <module>tiles-request-servlet</module>
-        <module>tiles-request-servlet-wildcard</module>
-        <module>tiles-request-portlet</module>
-        <module>tiles-request-portlet-wildcard</module>
         <module>tiles-request-jsp</module>
-        <module>tiles-request-freemarker</module>
-        <module>tiles-request-velocity</module>
-        <module>tiles-request-mustache</module>
-        <module>assembly</module>
     </modules>
     <distributionManagement>
+        <repository>
+            <id>github-sustain</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/sustain/tiles-request-jakarta</url>
+        </repository>
+        <snapshotRepository>
+            <id>github-sustain</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/sustain/tiles-request-jakarta</url>
+        </snapshotRepository>
         <site>
             <id>apache-site</id>
             <url>scm:svn:https://svn.apache.org/repos/asf/tiles/site/staging/tiles-request</url>
@@ -67,6 +64,15 @@ under the License.
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.14.1</version>
+                    <configuration>
+                        <source>17</source>
+                        <target>17</target>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
                     <configuration>
@@ -82,8 +88,16 @@ under the License.
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.3.7</version>
+                    <version>5.1.9</version>
                     <inherited>true</inherited>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.2.5</version>
+                    <configuration>
+                        <argLine>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</argLine>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -135,6 +149,8 @@ under the License.
     </build>
 
     <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError> <!-- remove with master-8 -->
         <tiles.osgi.symbolicName>org.apache.${project.artifactId}</tiles.osgi.symbolicName>
         <tiles.osgi.export>org.apache.tiles.*;version=${project.version}</tiles.osgi.export>
@@ -148,17 +164,17 @@ under the License.
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.apache.tiles</groupId>
+                <groupId>com.journaltech</groupId>
                 <artifactId>tiles-request-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.tiles</groupId>
+                <groupId>com.journaltech</groupId>
                 <artifactId>tiles-request-servlet</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.tiles</groupId>
+                <groupId>com.journaltech</groupId>
                 <artifactId>tiles-request-portlet</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -171,7 +187,7 @@ under the License.
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.5.8</version>
+                <version>1.7.36</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
@@ -182,25 +198,19 @@ under the License.
             <dependency>
                 <groupId>org.easymock</groupId>
                 <artifactId>easymock</artifactId>
-                <version>3.0</version>
+                <version>5.1.0</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.easymock</groupId>
-                <artifactId>easymockclassextension</artifactId>
-                <version>3.0</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                    <version>2.5</version>
+                    <groupId>jakarta.servlet</groupId>
+                    <artifactId>jakarta.servlet-api</artifactId>
+                    <version>6.1.0</version>
                     <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>javax.portlet</groupId>
-                <artifactId>portlet-api</artifactId>
-                <version>2.0</version>
+                <groupId>jakarta.portlet</groupId>
+                <artifactId>jakarta.portlet-api</artifactId>
+                <version>3.0.1</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -212,13 +222,13 @@ under the License.
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>
-                <version>1.7.6</version>
+                <version>1.7.36</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
-                <version>3.2.0.RELEASE</version>
+                <version>7.0.0</version>
                 <exclusions>
                     <exclusion>
                         <groupId>commons-logging</groupId>
@@ -227,9 +237,9 @@ under the License.
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>javax.servlet.jsp</groupId>
-                <artifactId>jsp-api</artifactId>
-                <version>2.1</version>
+                <groupId>jakarta.servlet.jsp</groupId>
+                <artifactId>jakarta.servlet.jsp-api</artifactId>
+                <version>3.1.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -295,71 +305,9 @@ under the License.
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.6</version>
+            <version>1.7.36</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <profiles>
-        <profile>
-            <id>apache-release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-install-plugin</artifactId>
-                        <configuration>
-                            <createChecksum>true</createChecksum>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>rat-maven-plugin</artifactId>
-                        <version>1.0-alpha-3</version>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                                <configuration>
-                                    <addDefaultLicenseMatchers>false</addDefaultLicenseMatchers>
-                                    <licenseMatchers>
-                                        <classNames>
-                                            <className>rat.analysis.license.ApacheSoftwareLicense20</className>
-                                        </classNames>
-                                    </licenseMatchers>
-                                    <includes>
-                                        <include>pom.xml</include>
-                                        <include>src/**</include>
-                                    </includes>
-                                    <excludes>
-                                        <exclude>**/*LICENSE.txt</exclude>
-                                        <exclude>**/*MANIFEST.MF</exclude>
-                                    </excludes>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>linkcheck</id>
-            <reporting>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-linkcheck-plugin</artifactId>
-                        <version>1.1</version>
-                        <configuration>
-                            <excludedLinks>
-                                <excludedLink>**/index.html</excludedLink>
-                                <excludedLink>**/logo.png</excludedLink>
-                            </excludedLinks>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </reporting>
-
-        </profile>
-    </profiles>
 
 </project>

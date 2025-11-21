@@ -21,13 +21,12 @@
 package org.apache.tiles.request.jsp.extractor;
 
 import static org.easymock.EasyMock.*;
-import static org.easymock.classextension.EasyMock.*;
 import static org.junit.Assert.*;
 
 import java.util.Enumeration;
 
-import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.PageContext;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.jsp.PageContext;
 
 import org.junit.Before;
 import org.junit.Test;

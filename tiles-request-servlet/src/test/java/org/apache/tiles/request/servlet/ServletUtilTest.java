@@ -20,13 +20,13 @@
  */
 package org.apache.tiles.request.servlet;
 
-import static org.easymock.classextension.EasyMock.*;
+import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
 
 import org.apache.tiles.request.ApplicationAccess;
 import org.apache.tiles.request.ApplicationContext;
