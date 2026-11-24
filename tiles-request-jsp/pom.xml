@@ -24,11 +24,11 @@ under the License.
 	<parent>
 		<artifactId>tiles-request</artifactId>
 		<groupId>com.journaltech</groupId>
-		<version>1.1.0-jakarta-SNAPSHOT</version>
+		<version>1.1.0-jakarta</version>
 	</parent>
 	<groupId>com.journaltech</groupId>
 	<artifactId>tiles-request-jsp</artifactId>
-	<version>1.1.0-jakarta-SNAPSHOT</version>
+	<version>1.1.0-jakarta</version>
 	<name>Tiles Request - JSP support</name>
 	<description>JSP implementation of the Tiles Request framework.</description>
     <properties>
